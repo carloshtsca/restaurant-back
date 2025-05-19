@@ -19,7 +19,9 @@ const orderSchema = new mongoose.Schema({
         tax: { type: Number, required: true },
         totalWithTax: { type: Number, required: true },
     },
-    items: []
+    items: [],
+    //  Part 15: 5min
+    table: { type: mongoose.Schema.Types.ObjectId, ref: 'Table' }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Order', orderSchema);
