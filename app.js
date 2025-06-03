@@ -5,12 +5,17 @@ const config = require('./config/config');
 const globalErrorHandler = require('./middlewares/globalErrorHandler');
 const createHttpError = require('http-errors');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const app = express();
 
 const PORT = config.port;
 connectDB();
 
 // Middlewares
+app.use(cors({
+    credentials: true,
+    origin: ['http://localhost:5173']
+}));
 app.use(express.json()); // parse incoming request in json format
 app.use(cookieParser());
 
@@ -30,5 +35,5 @@ app.use(globalErrorHandler);
 
 // Server
 app.listen(PORT, () => {
-    console.log(`POS Server is listening on port ${PORT}`);   
+    console.log(`POS Server is listening on port ${PORT}`);
 });
